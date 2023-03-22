@@ -11,3 +11,7 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+if you close your vscode or terminal then you need to re-deploy your smart contract and then copy paste hash
+step1: npx hardhat node
+step2: npx hardhat run --network localhost scripts/deploy.js
