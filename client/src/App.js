@@ -1,9 +1,10 @@
 import Upload from './artifacts/contracts/Upload.sol/Upload.json';//ABI
-import{useState,useEffect} from "react";
-import{ethers} from "ethers";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
 import FileUpload from './components/FileUpload';
 import Model from './components/Model';
 import Display from './components/Display';
+import Design from './components/Design';
 
 function App() {
   const [account, setAccount] = useState("");
@@ -35,7 +36,7 @@ function App() {
           Upload.abi,
           signer
         );
-        console.log(contract);
+        // console.log(contract);
         setContract(contract);
         setProvider(provider);
       } else {
@@ -46,13 +47,27 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-     
-     <h1>
-      Decentralized File System
-      </h1>
-      
-      <h3>account:{account?account:"not connected"}</h3>
+    <div className="w-full h-screen bg-banner-bg bg-no-repeat bg-center bg-cover relative overflow-hidden bg-black ">
+      <div className="  text-white flex-cols justify-center">
+        <div className='max-w-2xl mx-auto'>
+          <h1 className='text-6xl '>Decentralized File System </h1>
+          <h3 className='p-4'><b>Account: </b>{account ? account : "not connected"}</h3>
+
+          <div>
+            <FileUpload account={account} provider={provider} contract={contract}></FileUpload>
+          </div>
+        </div>
+        <div>
+          <Display account={account} contract={contract} />
+        </div>
+      </div>
+
+
+
+
+      {/* <div className="w-full h-screen absolute top-0 left-0 ">
+        <Design />
+      </div> */}
     </div>
   );
 }
